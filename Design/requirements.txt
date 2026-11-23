@@ -1,0 +1,58 @@
+overview: the implementation shall allow the user to calculate area, volume, and angles of different shapes
+
+REQ_1:
+the solution will allow the user to select from a list of shapes (Cuboid, Pyramid, Sphere, Cone, Tube, Disk, Snowman).
+From there, depending on the selected shape the solution will utilize the correct formulae to calculate the correct measurements from 
+    user-input dimensions
+
+the solution shall fetch all the available shape names.
+the solution shall then number and list the shape names to the user as options.
+the solution shall prompt the user to select a shape by entering the corresponding number.
+the solution shall store this number and use it to determine which calculations and formulae to use
+the solution shall restart this process if the user inputs an invalid number or character
+
+
+REQ_2:
+the solution shall constrain the user inputs to between 10mm and 10000mm
+
+Once the user selects a shape,
+the solution shall fetch the required inputs
+the solution shall iterate through required inputs and prompt the user to input values for them, ensuring that each input is 9<x<10001 and is an integer
+the solution shall then calculate the desired outputs for the selected shape.
+the solution shall clean the input array and restart the process if an invalid input is detected
+
+REQ_3:
+the solution shall return the surface area, volume and H:W, W:L, L:H when a Cuboid is selected.
+
+the solution shall utilise the following formulae for the Cuboid (using the user inputs):
+    surface_area = 2 * (length * width + length * height + width * height)
+    volume = length * width * height
+    ratio_H_W = height / width
+    ratio_W_L = width / length
+    ratio_L_H = length / height
+
+the solution shall return each of these values to the user
+the solution shall ask the user if they would like to calculate another shape or terminate.
+the solution shall restart the program if the user decides to calculate another shape.
+
+REQ_4:
+the solution shall return volume, Base area, Long Base Triangle area, short base triangle area, angles of the Short Base Triangle, 
+    angles of the Long Base Triangle and the sum of triangle angles for both base lengths or just 1 of them if they are
+    the same. When a Pyramid is selected.
+
+the solution shall compare the Base length and width and find which is larger.
+the solution shall utilise the following formulae for the Pyramid (using its user input Base dimensions and height) (assuming the base is rectangle, pyramid type was not specified):
+    volume = (1/3) * width * length * perprndicular height
+    base_area = width * length
+    shorter base triangle area = (1/2) * sqrt((longer side /2)^2 + (perp_height)^2) * SBase
+    shorter base triangle top angle = math.arctan((smaller side /2) / sqrt((smaller side /2)^2 + (perp_height)^2)
+    shorter base triangle base angle = (180 - SBA_top) / 2
+    longer base triangle area = (1/2) * sqrt((smaller side / 2)^2 + (perpendicular height)^2) * longer side
+    longer base triangle top angle = arctan((longer side /2) / sqrt((longer side /2)^2 + (perp_height)^2))
+    longer base triangle base angle = 
+    Sum of long base triangle angles* = LBA_top + LBA_baseA + LBA_baseB
+    Sum of short base triangle angles* = SBA_top + SBA_baseA + SBA_baseB
+
+    *only one will be calculated if sum of short base angles = sum of long base angles
+
+REQ_5:
