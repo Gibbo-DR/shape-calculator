@@ -1,46 +1,31 @@
-"the software will allow the user to select from a list of shapes (Cuboid, Pyramid, Sphere, Cone, disk, Disk, Snowman)."
+# "the software will allow the user to select from a list of shapes (Cuboid, Pyramid, Sphere, Cone, Disk, Snowman)."
 
 LLR1
-the software shall print all the available shape names.
+the software shall number and list the shape names to the user as options.
+
+# "the software shall print user inputs and constrain the user inputs to between 10mm and 10000mm.
+#     It will then output the calculated measurements to the user."
 
 LLR2
-the software shall then number and list the shape names to the user as options.
+the software shall prompt the user for the shape required and its inputs and output the calculated values.
+
+    No. shape       inputs
+    1   Cuboid      height, width, length   
+    2   Pyramid     Height, Width, length
+    3   Sphere      radius
+    4   Cone        radius, height
+    5   Disk        inner radius, outer radius, height
+    6   Snowman     base Sphere, body Sphere, head Sphere, nose Cone, hat Disk, hat Cone
 
 LLR3
-the software shall prompt the user to select a shape by entering the corresponding number.
-
-LLR4
-the software shall restart this process if the user inputs an invalid number or character
-
-
-
-"the software shall print user inputs and constrain the user inputs to between 10mm and 10000mm.
-    It will then output the calculated measurements to the user."
-
-Once the user selects a shape,
-
-LLR5
-the software shall prompt the user for the shapes required inputs (height, width , length, radius, disk thickness).
-
-LLR6
-the system shall ensure that each input is greater than 9 and less than 10001 and is an integer.
-
-LLR7
-the software shall restart the process if an invalid input is detected
-
-LLR8
-the software shall return the calculated values
-
-LLR9
-the software shall ask the user if they would like to calculate another shape or terminate. Then
-    the software shall restart the program if the user decides to calculate another shape.
+the system shall ensure that each input is between 10 and 10000 inclusive, and is an integer.
 
 
 #H = height, W = width, L = length
-"the software shall return the surface area, volume and H:W, W:L, L:H when a Cuboid is selected."
+# "the software shall return the surface area, volume and H:W, W:L, L:H when a Cuboid is selected."
 
-LLR10
-the software shall utilise the following formulae for the Cuboid (using the user inputs):
+LLR4
+the software shall utilise the following formulae for the Cuboid:
 
     surface_area = 2 * (length * width + length * height + width * height)
     volume = length * width * height
@@ -50,15 +35,12 @@ the software shall utilise the following formulae for the Cuboid (using the user
 
 
 
-"When a Pyramid is selected, the software shall return Volume, Base area, Long Base Triangle area, 
-    Short base triangle area, Angles of the Short Base Triangle, angles of the Long Base Triangle
-     and the sum of triangle angles for both base lengths or just 1 of them if they arethe same."
+# "When a Pyramid is selected, the software shall return Volume, Base area, Long Base Triangle area, 
+#     Short base triangle area, Angles of the Short Base Triangle, angles of the Long Base Triangle
+#      and the sum of triangle angles for both base lengths or just 1 of them if they arethe same."
 
-LLR11
-the software shall compare the Base length and width and find which is larger.
-
-LLR12
-the software shall utilise the following formulae for the Pyramid (using its user input Base dimensions and height)
+LLR5
+the software shall utilise the following formulae for the Pyramid
     (assuming the base is rectangle, pyramid type was not specified):
 
     volume = (1/3) * width * length * perpendicular height
@@ -69,10 +51,10 @@ the software shall utilise the following formulae for the Pyramid (using its use
     shorter base triangle base angle = (180 - shorter base triangle apex angle) / 2
 
     longer base triangle area = (1/2) * sqrt((smaller side / 2)^2 + (perpendicular height)^2) * longer side
-    longer base triangle apex angle = arctan((longer side /2) / sqrt((longer side /2)^2 + (perp_height)^2))
+    longer base triangle apex angle = arctan(( (1/2)*L)/()) * 2
     longer base triangle base angle = (180 - longer base tringle apex angle) / 2
 
-LLR13
+LLR6
 the software shall calculate the sum of the angles for both unless the base lengths are equal, in which case it will only calculate one of them.
     Using the following formulae:
     Sum of long base triangle angles* = longer base triangle base angle * 2 + longer base triangle apex angle
@@ -81,39 +63,54 @@ the software shall calculate the sum of the angles for both unless the base leng
 
 
 
-"when a Sphere is selected, the software shall return the surface area and volume."
+# "when a Sphere is selected, the software shall return the surface area and volume."
 
-LLR14
-the software shall utilise the following formulae for the Sphere (using its user input radius): # pi is a constant approximately equal to 3.14159
+LLR7
+the software shall utilise the following formulae for the Sphere: # pi is a constant approximately equal to 3.14159
 
     surface area = 4 * pi * radius^2
     volume = (4/3) * pi * radius^3
 
 
 
-"When a Cone is selected the software shall return the surface area, volume, and angle from base to concical surface"
+# "When a Cone is selected the software shall return the surface area, volume, and angle from base to concical surface"
 
-LLR15
-the software shall utilise the following formulae for the Cone (using its user input radius and height):
+LLR8
+the software shall utilise the following formulae for the Cone:
     surface area = pi * radius * (radius + sqrt(radius^2 + height^2))
     volume = (1/3) * pi * radius^2 * height
     angle from base to concical surface = arctan(height / radius)
 
 
 
-"when a disk is selected, the software will return the surface area and volume"
-LLR16
-the software shall utilise the following formulae for the disk (using its user input radius, height and disk thickness):
-    surface area = (2 * pi * radius * height + 2 * pi * (radius + disk thickness)) * height + 2 * (pi * (radius + disk thickness)^2 - pi * radius^2)
-    volume = pi * (radius + disk thickness)^2 * height - pi * radius^2 * height
+# "when a disk is selected, the software will return the surface area and volume"
+LLR9
+the software shall utilise the following formulae for the disk:
+    surface area = (2 * pi * inner radius * height + 2 * pi * (inner radius + disk outer radius)) * height + 2 * (pi * (inner radius + disk outer radius)^2 - pi * inner radius^2)
+    volume = pi * (inner radius + disk outer radius)^2 * height - pi * inner radius^2 * height
 
 
 
-"When a Snowman is selected, the software will construct 3 spheres, 2 cones, 1 disk"
-LLR17
-the software shall constrain the body radius input to be greater than 1/3 of the base and less than 2/3 of the base radius
+# "When a Snowman is selected, the software will construct 3 spheres, 2 cones, 1 disk"
 
-LLR18
-the software shall constrain the head radius input to be greater than 1/3 of the body and less than 2/3 of the body radius
+LLR10
+the software shall utilise the following, additional constraints for the Snowmans inputs:
+    shape   constraint
+    body    Diameter is max 2/3 of Base diameter
+    body    Diameter is min 1/3 of Base diameter
+    head    Diameter is max 2/3 of body diameter
+    head    diameter is min 1/3 of body diameter
+    nose    Diameter is max 1/10 of head diameter
+    nose    length is max 10* nose diameter
+  hat disk  inner radius has max of the head diameter
+  hat disk  outer radius has max of nose diameter
+  hat cone  maximum cone base diameter 2/3 of hat Disk full diameter (inner and outer radii)# whether or not the diameter is used isn't specified
+  hat cone  maximum cone height of hat Disk full diameter
+  hat cone  minimum cone height of 1/10 hat Disk full diameter
 
-LLR19
+LLR11
+the software shall find the final total volume and height
+
+LLR12
+the software shall handle errors without crashing, and provide the user with a clear
+     error message and prompt them to re-enter their input.

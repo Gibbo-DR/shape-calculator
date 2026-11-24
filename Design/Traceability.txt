@@ -1,0 +1,15 @@
+HLR         LLR         sub-program
+REQ_1/1     LLR1
+REQ_1/1     LLR2
+REQ_1/1     LLR12
+REQ_2/1     LLR3
+REQ_2/1     LLR12
+REQ_3/1     LLR4
+REQ_4/1     LLR5
+REQ_4/1     LLR6
+REQ_5/1     LLR7
+REQ_6/1     LLR8
+REQ_8/1     LLR9
+REQ_9/1     LLR10
+REQ_9/1     LLR12
+REQ_10/1    LLR11
