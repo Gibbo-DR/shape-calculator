@@ -10,7 +10,7 @@ LLR2
 the software shall prompt the user for the shape required and its inputs and output the calculated values.
 
     No. shape       inputs
-    1   Cuboid      height, width, length   
+    1   Cuboid      height, width, length
     2   Pyramid     Height, Width, length
     3   Sphere      radius
     4   Cone        radius, height
@@ -47,11 +47,11 @@ the software shall utilise the following formulae for the Pyramid
     base_area = width * length
 
     shorter base triangle area = (1/2) * sqrt((longer side /2)^2 + (perpendicular height)^2) * shorter base
-    shorter base triangle apex angle = arctan((smaller side /2) / sqrt((smaller side /2)^2 + (perpendicular height^2)
+    shorter base triangle apex angle = arctan( ((1/2)* shorter side) / (sqrt(( ( (1/2)* longer side)^2 )+(height^2)))) * 2
     shorter base triangle base angle = (180 - shorter base triangle apex angle) / 2
 
     longer base triangle area = (1/2) * sqrt((smaller side / 2)^2 + (perpendicular height)^2) * longer side
-    longer base triangle apex angle = arctan(( (1/2)*L)/()) * 2
+    longer base triangle apex angle = arctan( ((1/2)* longer side) / (sqrt(( ( (1/2)* shorter side)^2 )+(height^2)))) * 2
     longer base triangle base angle = (180 - longer base tringle apex angle) / 2
 
 LLR6
