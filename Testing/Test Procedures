@@ -1,0 +1,5 @@
+I will test the Shape selection and measurement inputting (requirements: REQ_2/1, REQ_3/1) by entering valid and invalid values on the edges of the ranges and also entering characters instead of integers. The software should handle incorrect values without crashing and restart the selection process until a correct value is input. The software, in the event of a valid input should continue to ask for the corresponding shapes dimensions
+
+I will test the 
+
+I will test the Pyramid calculation and measurement input (requirements: REQ_2/1, REQ_4/1) by entering values for length, width and height that are just within, on and just outside the constraint of 10mm-10000mm as well as incorrect inputs such as a character. The software should use these and a formula to calculate volume, base area, area of triangle with the longest base, area of triangle with the shortest base and the angles of both short and long based triangles as well as the sum of those angles. the software should handle any inputs that are out of range by notifying the user of their mistake and restarting the value input process.
