@@ -1,16 +1,31 @@
-from math import atan, sqrt, degrees
-def getMeasurement(): # Handles standard measurement inputs and constraints
-    measurement = input("Enter an integer measurement between 10mm-10000mm (inclusive): ")
+from math import atan, sqrt, degrees, pi
+def getMeasurement(lowerBound=10, upperBound=10000): # Handles standard measurement inputs and constraints
+    measurement = input(f"Enter an integer measurement between {lowerBound}mm-{upperBound}mm (inclusive): ")
     try:
         measurement = int(measurement)
     except ValueError:
         measurement = 0 # if a string it justs sets as out of range
-
-    if measurement > 9 and measurement < 10001:
+    # if lowerBound < 10001 and upperBound > 9 and lowerBound >9 and upperBound <10001
+    if measurement > lowerBound-1 and measurement < upperBound+1:
         return measurement
     else:
         return False # any falses back in main throw the error
-    
+    # else:
+    #     return "rangeError"
+
+def Cuboid(H,W,L):
+    surfArea = 2 * (L * W + L * H + W * H)
+    volume = H*W*L
+    HtoW = H/W
+    WtoL = W/L
+    LtoH = L/H
+    return f"Volume = {volume}mm^3,\
+        \nsurface area = {surfArea}mm^2,\
+        \nH:W = {HtoW},\
+        \nW:L = {WtoL},\
+        \nL:H = {LtoH}"
+
+
 def Pyramid(H,W,L):
     volume = (1/3)*H*W*L
     baseArea = W*L
@@ -54,16 +69,45 @@ def Pyramid(H,W,L):
         \nSum of short base angles = {shortSum},\
         \nSum of long base angles = {longSum}"
 
+def Sphere(R):
+    volume = (4/3)*pi*(R**3)
+    surfArea = 4*pi*(R**3)
+
+    return [f"Volume = {volume}mm^3, surface area = {surfArea}mm^2",[volume,R*2]] #[output message, [volume, height]]
+
+
+def Cone(H,R):
+    surfArea = pi*R*(R+sqrt((R**2) + H**2))
+    volume = (1/3)*pi*(R**2)*H
+    angle = degrees(atan(H/R))
+    return [f"Volume = {volume}mm^3, Surface Area = {surfArea}mm^2, Angle from base to conical surface = {angle} degrees", [volume, H]]
+
+def Disk(R,H):
+    #surfArea = (2*pi*IR*H+2*pi*(IR+OR))*H+2*(pi*(IR+OR)**2 - pi*IR**2)
+    surfArea = (2*pi*R*H) + 2*(pi*(R**2))
+    #volume = pi*(IR+OR)**2 * H - pi*(IR**2)*H
+    volume = pi*(R**2) * H
+    return [f"Volume = {volume}mm^3, Surface Area = {surfArea}mm^2", [volume, H]]
+
 active = True
 while active:
     print("\n")
     shapeChoice = input("""choose the shape you would like to calculate:
                         1. Rectangle
                         2. Pyramid
+                        3. Sphere
                         choice: """)
     if shapeChoice == "1":
-        print("feature still in development...")
-        pass
+        print("please enter a value for height") # getting measurements (could -> __init__ if oop approach)
+        height = getMeasurement()
+        print("please enter a value for width")
+        width = getMeasurement()
+        print("please enter a value for length")
+        length = getMeasurement()
+        if height == False or width == False or length == False:
+            print("user input must be an integer within the given range (inclusive)")
+        else:
+            print(Cuboid(height,width,length))
 
     elif shapeChoice == "2":
         print("please enter a value for height") # getting measurements (could -> __init__)
@@ -73,9 +117,43 @@ while active:
         print("please enter a value for length")
         length = getMeasurement()
         if height == False or width == False or length == False:
-            print("user input must be an integer within the range 10mm-10000mm inclusive")
+            print("user input must be an integer within the given range (inclusive)")
         else:
             print(Pyramid(height, width, length))
+
+    elif shapeChoice == "3":
+        print("please enter a valid input for radius")
+        radius = getMeasurement()
+        if radius == False:
+            print("user input must be an integer within the given range (inclusive)")
+        else:
+            print(Sphere(radius)[0])
+
+    # elif shapeChoice == "6": #Snowman but its not constrainted properly just yet
+    #     print("base R")
+    #     base_radius = getMeasurement()
+    #     print("body R")
+    #     body_radius = getMeasurement(upperBound=int(round((2/3)*base_radius, 0)), lowerBound=int(round((1/3)*base_radius, 0)))
+    #     print("head R")
+    #     head_radius = getMeasurement(upperBound=int(round((2/3)*body_radius, 0)), lowerBound=int(round((1/3)*body_radius, 0)))
+    #     print("nose R")
+    #     nose_radius = getMeasurement(upperBound=int(round((1/10)*head_radius, 0)))
+    #     print("nose H")
+    #     nose_height = getMeasurement(upperBound=20*nose_radius)
+    #     print("top hat rim R")
+    #     hat_rim_radius = getMeasurement(upperBound=head_radius)
+    #     print("top hat rim thickness")
+    #     hat_thick = getMeasurement(upperBound=2*nose_radius)
+    #     print("top hat base R")
+    #     hat_base_radius = getMeasurement(upperBound=int(round((2/3)*hat_rim_radius,0)))
+    #     print("top hat height")
+    #     hat_height = getMeasurement(upperBound=hat_rim_radius*2, lowerBound=int(round((1/5)*hat_rim_radius,0)))
+    #     if base_radius == False or body_radius == False or head_radius == False or nose_radius == False or nose_height == False or hat_rim_radius == False or hat_thick == False or hat_base_radius == False or hat_height == False:
+    #         print("user input must be in the given range")
+    #     else:
+    #         Volume = Sphere(base_radius)[1][0] + Sphere(body_radius)[1][0] + Sphere(head_radius)[1][0] + Cone(nose_height, nose_radius)[1][0] + Disk(hat_rim_radius,hat_thick)[1][0] + Cone(hat_base_radius,hat_height)[1][0]
+    #         Height = Sphere(base_radius)[1][1] + Sphere(body_radius)[1][1] + Sphere(head_radius)[1][1]  + Disk(hat_rim_radius,hat_thick)[1][1] + Cone(hat_base_radius,hat_height)[1][1]
+    #         print(f"snowman volume = {Volume}, height = {Height}")
 
     else:
         print("user input must be a number displayed next to a shape name")
