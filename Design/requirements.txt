@@ -47,7 +47,7 @@ the software shall utilise the following formulae for the Pyramid #assung point 
     base_area = width * length
 
     shorter base triangle area = (1/2) * sqrt((longer side /2)^2 + (perpendicular height)^2) * shorter side
-    shorter base triangle apex angle = arctan( ((1/2)* shorter side) / (sqrt(( ( (1/2)* longer side)^2 )+(height^2)))) * 2
+    shorter base triangle apex angle = arctan( ((1/2)* shorter side) / (sqrt(( ( (1/2)* longer side)^2 )+(height^2))) * 2
     shorter base triangle base angle = (180 - shorter base triangle apex angle) / 2
 
     longer base triangle area = (1/2) * sqrt((smaller side / 2)^2 + (perpendicular height)^2) * longer side
@@ -87,8 +87,9 @@ the software shall utilise the following formulae for the Cone:
 LLR9
 the software shall utilise the following formulae for the disk: # I have assumed a disk is a Cylinder but the definition is ambiguous
     #surface area = (2 * pi * inner radius * height + 2 * pi * (inner radius + disk outer radius)) * height + 2 * (pi * (inner radius + disk outer radius)^2 - pi * inner radius^2)
-    surface area = 2*pi*r*hight + 2*(pi * r^2)
-    volume = pi * (inner radius + disk outer radius)^2 * height - pi * inner radius^2 * height
+    surface area = 2*pi*radius*height + 2*(pi * radius^2)
+    #volume = pi * (inner radius + disk outer radius)^2 * height - pi * inner radius^2 * height
+    volume = pi * radius^2 * height
 
 #Tube shape removed due to it being the EXACT same as the Disk while having further  conflicts in the snowman
 
