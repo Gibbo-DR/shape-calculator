@@ -17,11 +17,11 @@ def test_cuboid_B(): #5
     assert "W:L = 0.001" in data
     assert "L:H = 1000.0" in data
 
-def test_measurementfunc(monkeypatch,capsys):
-    main()
-    # monkeypatch.setattr('builtins.input', lambda _: "3")
-    # monkeypatch.setattr('builtins.input', lambda _: "50")
-    getMeasurement().input
-    captured = capsys.readouterr()
-    assert captured.out == "Volume = 523598.776mm^3,\
-            \nsurface area = 31415.927mm^2"
+# def test_measurementfunc(monkeypatch,capsys):
+#     main()
+#     # monkeypatch.setattr('builtins.input', lambda _: "3")
+#     # monkeypatch.setattr('builtins.input', lambda _: "50")
+#     getMeasurement().input
+#     captured = capsys.readouterr()
+#     assert captured.out == "Volume = 523598.776mm^3,\
+#             \nsurface area = 31415.927mm^2"

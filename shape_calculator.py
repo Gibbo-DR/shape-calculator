@@ -26,8 +26,8 @@ def Cuboid(H,W,L):
 
 
 def Pyramid(H,W,L):
-    volume = (1/3)*H*W*L
-    baseArea = W*L
+    volume = round((1/3)*H*W*L,3)
+    baseArea = round(W*L, 3)
     if W > L:
         longerSide = W
         shorterSide = L
@@ -35,10 +35,10 @@ def Pyramid(H,W,L):
         longerSide = L
         shorterSide = W
     else: # if they are the same it only calculates one value cause they will be the same
-        TriA = (1/2) * sqrt(((L/2)**2) + ((H)**2)) * W
-        ApexAng = degrees(atan(((1/2)*W)/(sqrt((((1/2)*L)**2)+(H**2)))))
-        BaseAng = (180 - ApexAng)/2 #
-        Sum = ApexAng + BaseAng*2
+        TriA = round((1/2) * sqrt(((W/2)**2) + ((H)**2)) * L, 3)
+        ApexAng = round(degrees(atan(((1/2)*W) / (sqrt(((1/2)*L)**2+(H)**2)))*2), 3)
+        BaseAng = round((180 - ApexAng)/2, 3)
+        Sum = round(ApexAng + BaseAng*2, 3)
 
         return f"Volume = {volume}mm^3,\
             \nBase Area = {baseArea}mm^2,\
@@ -47,15 +47,15 @@ def Pyramid(H,W,L):
             \nBase angles for both triangles = {BaseAng} degrees,\
             \nSum of short base angles for both = {Sum} degrees"
     
-    shorterTriA = (1/2) * sqrt(((longerSide/2)**2) + ((H)**2)) * shorterSide
-    shorterApexAng = degrees(atan(((1/2)*shorterSide)/(sqrt((((1/2)*longerSide)**2)+(H**2)))))
-    shorterBaseAng = (180 - shorterApexAng)/2
-    shortSum = shorterApexAng + shorterBaseAng*2
+    shorterTriA = round((1/2) * sqrt(((longerSide/2)**2) + ((H)**2)) * shorterSide, 3)
+    shorterApexAng = round(degrees(atan(((1/2)*shorterSide) / (sqrt(((1/2)*longerSide)**2+(H)**2)))*2), 3)
+    shorterBaseAng = round((180 - shorterApexAng)/2, 3)
+    shortSum = round(shorterApexAng + shorterBaseAng*2, 3)
 
-    longerTriA = (1/2) * sqrt(((shorterSide/2)**2) + ((H)**2)) * longerSide
-    longerApexAng = degrees(atan(((1/2)*longerSide)/(sqrt((((1/2)*shorterSide)**2)+(H**2)))))
-    longerBaseAng = (180 - longerApexAng)/2
-    longSum = longerApexAng + longerBaseAng*2
+    longerTriA = round((1/2) * sqrt(((shorterSide/2)**2) + ((H)**2)) * longerSide, 3)
+    longerApexAng = round(degrees(atan(((1/2)*longerSide) / (sqrt(((1/2)*shorterSide)**2+(H)**2)))*2), 3)
+    longerBaseAng = round((180 - longerApexAng)/2, 3)
+    longSum = round(longerApexAng + longerBaseAng*2, 3)
     
     return f"Volume = {volume}mm^3,\
         \nBase Area = {baseArea}mm^2,\
@@ -70,25 +70,25 @@ def Pyramid(H,W,L):
 
 def Sphere(R):
     volume = round((4/3)*pi*(R**3),3)
-    surfArea = round(4*pi*(R**3),3)
+    surfArea = round(4*pi*(R**2),3)
 
     return [f"Volume = {volume}mm^3,\
             \nsurface area = {surfArea}mm^2",[volume,R*2]] #[output message, [volume, height]]
 
 
 def Cone(H,R):
-    surfArea = pi*R*(R+sqrt((R**2) + H**2))
-    volume = (1/3)*pi*(R**2)*H
-    angle = degrees(atan(H/R))
+    surfArea = round(pi*R*(R+sqrt((R**2) + H**2)), 3)
+    volume = round((1/3)*pi*(R**2)*H, 3)
+    angle = round(degrees(atan(H/R)), 3)
     return [f"Volume = {volume}mm^3,\
             \nSurface Area = {surfArea}mm^2,\
             \nAngle from base to conical surface = {angle} degrees", [volume, H]]
 
 def Disk(R,H):
     #surfArea = (2*pi*IR*H+2*pi*(IR+OR))*H+2*(pi*(IR+OR)**2 - pi*IR**2)
-    surfArea = (2*pi*R*H) + 2*(pi*(R**2))
+    surfArea = round((2*pi*R*H) + 2*(pi*(R**2)), 3)
     #volume = pi*(IR+OR)**2 * H - pi*(IR**2)*H
-    volume = pi*(R**2) * H
+    volume = round(pi*(R**2) * H, 3)
     return [f"Volume = {volume}mm^3,\
             \nSurface Area = {surfArea}mm^2", [volume, H]]
 
@@ -101,9 +101,10 @@ def main():
                             1. Rectangle
                             2. Pyramid
                             3. Sphere
-                            4. Cone (unstable)
-                            5. Disk (unstable)
-                            6. Snowman (unstable)
+                            4. Cone (unstable, untested)
+                            5. Disk (unstable, untested)
+                            6. Snowman (unstable, untested)
+                            e. Exit
                             choice: """)
         if shapeChoice == "1":
             print("please enter a value for height") # getting measurements (could -> __init__ if oop approach)
@@ -179,12 +180,17 @@ def main():
             if base_radius == False or body_radius == False or head_radius == False or nose_radius == False or nose_height == False or hat_rim_radius == False or hat_thick == False or hat_base_radius == False or hat_height == False:
                 print("user input must be in the given range")
             else:
-                Volume = Sphere(base_radius)[1][0] + Sphere(body_radius)[1][0] + Sphere(head_radius)[1][0] + Cone(nose_height, nose_radius)[1][0] + Disk(hat_rim_radius,hat_thick)[1][0] + Cone(hat_base_radius,hat_height)[1][0]
-                Height = Sphere(base_radius)[1][1] + Sphere(body_radius)[1][1] + Sphere(head_radius)[1][1]  + Disk(hat_rim_radius,hat_thick)[1][1] + Cone(hat_base_radius,hat_height)[1][1]
+                Volume = round(Sphere(base_radius)[1][0] + Sphere(body_radius)[1][0] + Sphere(head_radius)[1][0] + Cone(nose_height, nose_radius)[1][0] + Disk(hat_rim_radius,hat_thick)[1][0] + Cone(hat_base_radius,hat_height)[1][0], 3)
+                Height = round(Sphere(base_radius)[1][1] + Sphere(body_radius)[1][1] + Sphere(head_radius)[1][1]  + Disk(hat_rim_radius,hat_thick)[1][1] + Cone(hat_base_radius,hat_height)[1][1], 3)
                 print(f"snowman volume = {Volume}, height = {Height}")
+        
+        elif shapeChoice == "e":
+            active = False
 
         else:
             print("user input must be a number displayed next to a shape name")
 
+    return "Thanks for using the shape calculator"
+
 if __name__ == "__main__":
-    main()
+    print(main())
